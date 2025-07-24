@@ -22,12 +22,12 @@ export default {
     title: {
       type: String,
       default: import.meta.env.VITE_APP_NAME,
-    }
+    },
   },
   computed: {
     pageTitle() {
       return this.title || import.meta.env.VITE_APP_NAME;
-    }
-  }
+    },
+  },
 };
 </script>

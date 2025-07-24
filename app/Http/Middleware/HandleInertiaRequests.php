@@ -28,7 +28,7 @@ class HandleInertiaRequests extends Middleware
 
     /**
      * Define the props that are shared by default.
-     *
+     *p
      * @see https://inertiajs.com/shared-data
      *
      * @return array<string, mixed>
@@ -37,7 +37,9 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            //
+            'auth' => [
+                'user' => fn() => $request->user(),
+            ],
         ];
     }
 }

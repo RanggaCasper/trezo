@@ -1,10 +1,10 @@
 <template>
   <Link :href="`/products/${product.id}`">
     <div
-      class="border border-primary rounded-lg overflow-hidden shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg"
+      class="rounded-lg overflow-hidden shadow-md transform transition duration-300 hover:shadow-lg hover:ring-2 hover:ring-primary"
     >
       <img class="w-full h-48 object-cover" :src="product.image" :alt="product.name" />
-      <div class="p-2">
+      <div class="px-4 py-2">
         <h3 class="font-semibold line-clamp-1">{{ product.name }}</h3>
         <div class="mt-2 flex items-center justify-between">
           <span class="text-sm text-gray-700">

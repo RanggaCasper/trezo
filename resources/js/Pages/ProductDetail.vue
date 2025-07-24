@@ -97,12 +97,10 @@ export default {
     },
 
     goBack() {
-      // Kembali ke halaman sebelumnya atau home
       this.$inertia.visit("/");
     },
 
     handleImageError(event) {
-      // Fallback image jika gambar gagal dimuat
       event.target.src =
         "https://placehold.co/400x300/f8f9fa/6c757d?text=Gambar+Tidak+Tersedia";
       this.imageError = true;
@@ -113,20 +111,6 @@ export default {
     if (this.product) {
       document.title = `${this.product.name} - ${import.meta.env.VITE_APP_NAME}`;
     }
-  },
-
-  watch: {
-    product: {
-      handler(newProduct) {
-        if (!newProduct) {
-          this.error = true;
-        } else {
-          this.error = false;
-          document.title = `${newProduct.name} - Trezo`;
-        }
-      },
-      immediate: true,
-    },
   },
 };
 </script>

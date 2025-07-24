@@ -16,7 +16,7 @@ export default {
   computed: {
     pageTitle() {
       return this.title || import.meta.env.VITE_APP_NAME;
-    }
-  }
+    },
+  },
 };
 </script>

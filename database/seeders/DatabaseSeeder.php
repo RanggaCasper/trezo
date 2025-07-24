@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         // Seed categories and products
         $this->call([
+            RoleSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
         ]);
