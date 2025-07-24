@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home');
 
+Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index']);
+
 Route::prefix('products')->group(function () {
     Route::get('/{product}', [App\Http\Controllers\ProductController::class, 'show'])
         ->name('products.show');
