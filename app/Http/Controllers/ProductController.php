@@ -7,9 +7,9 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function show($productId)
+    public function show($slug)
     {
-        $product = Product::with('category')->find($productId);
+        $product = Product::with('category')->where('slug', $slug)->first();
 
         if (!$product) {
             return Inertia::render('ProductDetail', [

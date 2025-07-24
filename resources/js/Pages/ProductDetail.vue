@@ -1,28 +1,49 @@
 <template>
+  <Head :title="product ? product.name : 'Detail Produk'" />
+
   <div class="relative mx-auto" v-if="product">
-    <div class="absolute top-2 left-2">
-      <button @click="goBack" class="bg-black/30 p-2 rounded-lg cursor-pointer shadow">
+    <div class="absolute top-4 left-4">
+      <Link href="/" >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="size-4 text-white"
+          class="size-8 text-white"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M5 12l14 0" />
+          <path d="M5 12h14" />
           <path d="M5 12l6 6" />
           <path d="M5 12l6 -6" />
         </svg>
-      </button>
+      </Link>
     </div>
 
-    <img :src="product.image" class="w-full h-64 object-cover" alt="" />
+    <div class="absolute top-4 right-4">
+      <Link href="/cart">
+        <svg
+          class="size-8 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M6 2a1 1 0 0 1 .993 .883l.007 .117v1.068l13.071 .935a1 1 0 0 1 .929 1.024l-.01 .114l-1 7a1 1 0 0 1 -.877 .853l-.113 .006h-12v2h10a3 3 0 1 1 -2.995 3.176l-.005 -.176l.005 -.176c.017 -.288 .074 -.564 .166 -.824h-5.342a3 3 0 1 1 -5.824 1.176l-.005 -.176l.005 -.176a3.002 3.002 0 0 1 1.995 -2.654v-12.17h-1a1 1 0 0 1 -.993 -.883l-.007 -.117a1 1 0 0 1 .883 -.993l.117 -.007h2zm0 16a1 1 0 1 0 0 2a1 1 0 0 0 0 -2zm11 0a1 1 0 1 0 0 2a1 1 0 0 0 0 -2z"
+          />
+        </svg>
+      </Link>
+    </div>
+
+    <img
+      :src="product.image"
+      @error="handleImageError"
+      class="w-full h-64 object-cover"
+      alt="Gambar Produk"
+    />
 
     <div class="p-4 max-w-6xl mx-auto">
       <h1 class="text-2xl font-bold text-gray-800 mb-2">{{ product.name }}</h1>
@@ -64,22 +85,18 @@
 <script>
 import ProductLayout from "../Shared/Layouts/ProductLayout.vue";
 import ProductNavigation from "../Shared/ProductNavigation.vue";
+import { Head, Link } from "@inertiajs/vue3";
 import { formatCurrency } from "../Utils/helper.js";
 
 export default {
   layout: ProductLayout,
   components: {
     ProductNavigation,
+    Head,
+    Link
   },
   props: {
-    product: {
-      type: Object,
-      default: null,
-    },
-    title: {
-      type: String,
-      default: "Detail Produk",
-    },
+    product: Object,
   },
   data() {
     return {
@@ -89,28 +106,14 @@ export default {
   },
   methods: {
     formatCurrency,
-    buyNow() {
-      // TODO: Implementasi beli sekarang
-      console.log("Beli sekarang:", this.product);
-      // Anda bisa menambahkan logic untuk pembelian langsung di sini
-      alert("Redirect ke halaman checkout!");
-    },
-
     goBack() {
       this.$inertia.visit("/");
     },
-
     handleImageError(event) {
       event.target.src =
         "https://placehold.co/400x300/f8f9fa/6c757d?text=Gambar+Tidak+Tersedia";
       this.imageError = true;
     },
-  },
-
-  mounted() {
-    if (this.product) {
-      document.title = `${this.product.name} - ${import.meta.env.VITE_APP_NAME}`;
-    }
   },
 };
 </script>

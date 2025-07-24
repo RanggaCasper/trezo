@@ -1,5 +1,5 @@
 <template>
-  <Link :href="`/products/${product.id}`">
+  <Link :href="`/products/${product.slug}`">
     <div
       class="rounded-lg overflow-hidden shadow-md transform transition duration-300 hover:shadow-lg hover:ring-2 hover:ring-primary"
     >

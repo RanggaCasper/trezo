@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { toast } from "vue3-toastify";
+
 export default {
   name: "ProductNavigation",
   props: {
@@ -64,7 +66,7 @@ export default {
         },
         {
           onSuccess: () => {
-            alert("Produk berhasil ditambahkan ke keranjang!");
+            toast.success("Produk berhasil ditambahkan ke keranjang!");
           },
           onError: (errors) => {
             console.error(errors);

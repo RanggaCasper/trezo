@@ -8,7 +8,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
 Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index']);
 
 Route::prefix('products')->group(function () {
-    Route::get('/{product}', [App\Http\Controllers\ProductController::class, 'show'])
+    Route::get('/{slug}', [App\Http\Controllers\ProductController::class, 'show'])
         ->name('products.show');
 });
 
@@ -27,5 +27,16 @@ Route::prefix('auth')->middleware('guest')->group(function () {
 Route::post('/logout', App\Http\Controllers\Auth\LogoutController::class)
     ->name('logout');
 
-Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'addToCart'])->middleware('auth')
-    ->name('cart.add');
+Route::prefix('cart')->middleware('auth')->group(function () {
+    Route::get('/', [App\Http\Controllers\CartController::class, 'index'])
+        ->name('cart.index');
+    Route::post('/add', [App\Http\Controllers\CartController::class, 'addToCart'])
+        ->name('cart.add');
+
+    Route::post('/increase', [App\Http\Controllers\CartController::class, 'increaseQty'])
+        ->name('cart.increase');
+    Route::post('/decrease', [App\Http\Controllers\CartController::class, 'decreaseQty'])
+        ->name('cart.decrease');
+    Route::post('/remove', [App\Http\Controllers\CartController::class, 'remove'])
+        ->name('cart.remove');
+});
