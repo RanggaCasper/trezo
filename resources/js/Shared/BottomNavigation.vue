@@ -50,7 +50,7 @@
         <!-- Akun -->
         <button
           type="button"
-          class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-100 group"
+          class="inline-flex col-span-2 flex-col items-center justify-center px-5 hover:bg-gray-100 group"
         >
           <svg
             class="w-5 h-5 mb-2 text-gray-500 group-hover:text-primary"
