@@ -24,8 +24,15 @@ class LoginController extends Controller
         try {
             if (Auth::attempt($request->only('email', 'password'))) {
                 $request->session()->regenerate();
+            
+                $user = Auth::user();
+            
+                if ($user->role_id === 1) {
+                    return redirect('/admin')->with('success', 'Login sebagai admin.');
+                }
+            
                 return redirect()->route('home')->with('success', 'Login berhasil.');
-            }
+            }            
 
             return back()->withErrors([
                 'error' => 'Email atau password salah.',

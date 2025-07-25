@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    protected $table = 'carts';
-    
-    protected $guarded = ['id'];
+    protected $fillable = ['user_id', 'product_id', 'quantity'];
 
     public function user()
     {
@@ -20,3 +18,4 @@ class Cart extends Model
         return $this->belongsTo(Product::class);
     }
 }
+
